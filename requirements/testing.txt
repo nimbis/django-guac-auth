@@ -1,5 +1,6 @@
 -r common.txt
 
+coveralls
 coverage
 setuptools-pep8
 flake8
