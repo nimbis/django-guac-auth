@@ -16,3 +16,5 @@ script:
   - make pep8
   - make flake8
   - make test
+after_success:
+  - coveralls
