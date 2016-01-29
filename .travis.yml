@@ -5,7 +5,6 @@ python:
 branches:
   except:
     - travis-tested
-install:
 env:
   global:
     - NIFTY_TRAVIS_CACHE_REPO=https://github.com/nimbis/travis-cache-public.git
