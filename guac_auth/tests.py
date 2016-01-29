@@ -28,6 +28,7 @@ class SimpleTestCase(TestCase):
 
         self.assertEquals(gcp.user.username, "guacman")
         self.assertEquals(gcp.connection.protocol, "rdp")
+        self.assertEquals(gcp.permission, "READ")
 
         hostname_parameter = gcp.connection.parameters.get(
             parameter_name='hostname')

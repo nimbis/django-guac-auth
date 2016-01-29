@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from .fields import GuacamoleConnectionGroupTypeField
+from .fields import GuacamoleObjectPermissionTypeField
+from .fields import GuacamoleSystemPermissionTypeField
 
 connection_group_type = (
     ('ORGANIZATIONAL', 'ORGANIZATIONAL'),
@@ -28,11 +31,8 @@ class GuacamoleConnectionGroup(models.Model):
         blank=True,
         null=True)
     connection_group_name = models.CharField(max_length=128)
-    type = models.CharField(
-        max_length=128,
+    type = GuacamoleConnectionGroupTypeField(
         choices=connection_group_type,
-        null=False,
-        blank=False,
         default='ORGANIZATIONAL')
     max_connections = models.IntegerField(blank=True, null=True)
     max_connections_per_user = models.IntegerField(blank=True, null=True)
@@ -85,8 +85,7 @@ class GuacamoleConnectionGroupPermission(models.Model):
         GuacamoleUser,
         related_name='connection_group_permissions')
     connection_group = models.ForeignKey(GuacamoleConnectionGroup)
-    permission = models.CharField(
-        max_length=128,
+    permission = GuacamoleObjectPermissionTypeField(
         choices=object_permission_type,
         default='READ')
 
@@ -132,8 +131,7 @@ class GuacamoleConnectionPermission(models.Model):
         GuacamoleConnection,
         related_name='connection_permissions',
         on_delete=models.CASCADE)
-    permission = models.CharField(
-        max_length=128,
+    permission = GuacamoleObjectPermissionTypeField(
         choices=object_permission_type,
         default='READ')
 
@@ -146,9 +144,9 @@ class GuacamoleSystemPermission(models.Model):
     user = models.ForeignKey(
         GuacamoleUser,
         related_name='system_permissions')
-    permission = models.CharField(
-        max_length=128,
-        choices=system_permission_type)
+    permission = GuacamoleSystemPermissionTypeField(
+        choices=system_permission_type,
+        default='CREATE_CONNECTION')
 
     class Meta:
         db_table = 'guacamole_system_permission'
@@ -162,8 +160,7 @@ class GuacamoleUserPermission(models.Model):
     affected_user = models.ForeignKey(
         GuacamoleUser,
         related_name='affected_perms')
-    permission = models.CharField(
-        max_length=128,
+    permission = GuacamoleObjectPermissionTypeField(
         choices=object_permission_type,
         default='READ')
 

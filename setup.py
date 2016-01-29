@@ -13,6 +13,7 @@ setup(
     packages=find_packages(exclude=["tests", ]),
     install_requires=[
         'django>=1.8,<1.9',
+        'sqlparse'
     ],
     zip_safe=False,
     include_package_data=True,
