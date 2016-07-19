@@ -36,11 +36,11 @@ flake8: check-venv
 # code coverage
 #
 
-COVERAGE_INCLUDE='guac_auth/*'
+COVERAGE_ARGS=--source=guac_auth
 
 coverage: check-venv
 	coverage erase
-	-coverage run --include=$(COVERAGE_INCLUDE) ./manage.py test
+	-coverage run $(COVERAGE_ARGS) ./manage.py test
 	coverage report
 	coverage html
 	@echo "See ./htmlcov/index.html for coverage report"
