@@ -27,10 +27,7 @@ See the [Contributing Guidelines](CONTRIBUTING.md).
 
 History
 -------
-
-v1.0.0:
-
-    * Initial version.
+See file CHANGES.
 
 Usage
 -----
