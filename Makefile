@@ -23,7 +23,7 @@ pep8: check-venv
 	python setup.py pep8 $(PEP8_OPTS)
 
 test: check-venv clean
-	python -Wall manage.py test
+	python -Wall manage.py test -v 2
 
 # flake8
 #
@@ -40,7 +40,7 @@ COVERAGE_ARGS=--source=guac_auth
 
 coverage: check-venv
 	coverage erase
-	-coverage run $(COVERAGE_ARGS) ./manage.py test
+	-coverage run $(COVERAGE_ARGS) ./manage.py test -v 2
 	coverage report
 	coverage html
 	@echo "See ./htmlcov/index.html for coverage report"
