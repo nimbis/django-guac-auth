@@ -44,6 +44,8 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+db.sqlite3
+db-test.sqlite3
 
 # Translations
 *.mo

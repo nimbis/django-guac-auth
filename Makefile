@@ -23,7 +23,7 @@ pep8: check-venv
 	python setup.py pep8 $(PEP8_OPTS)
 
 test: check-venv clean
-	python -Wall manage.py test -v 2
+	python -Wall manage.py test --keepdb -v 2
 
 travis-tests: check-venv
 	@echo "travis_fold:start:flake8"
@@ -32,7 +32,7 @@ travis-tests: check-venv
 
 	coverage erase
 	@echo "travis_fold:start:test"
-	coverage run $(COVERAGE_ARGS) ./manage.py test -v 2
+	coverage run $(COVERAGE_ARGS) ./manage.py test --keepdb -v 2
 	@echo "travis_fold:end:test"
 
 	@echo "travis_fold:start:coverage"
@@ -56,7 +56,7 @@ COVERAGE_ARGS=--source=guac_auth
 
 coverage: check-venv
 	coverage erase
-	-coverage run $(COVERAGE_ARGS) ./manage.py test -v 2
+	-coverage run $(COVERAGE_ARGS) ./manage.py test --keepdb -v 2
 	coverage report
 	coverage html
 	@echo "See ./htmlcov/index.html for coverage report"
