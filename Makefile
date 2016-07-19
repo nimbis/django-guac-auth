@@ -25,6 +25,22 @@ pep8: check-venv
 test: check-venv clean
 	python -Wall manage.py test -v 2
 
+travis-tests: check-venv
+	@echo "travis_fold:start:flake8"
+	make flake8
+	@echo "travis_fold:end:flake8"
+
+	coverage erase
+	@echo "travis_fold:start:test"
+	coverage run $(COVERAGE_ARGS) ./manage.py test -v 2
+	@echo "travis_fold:end:test"
+
+	@echo "travis_fold:start:coverage"
+	coverage report
+	coverage html
+	@echo "travis_fold:end:coverage"
+
+
 # flake8
 #
 
