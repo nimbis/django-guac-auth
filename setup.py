@@ -12,7 +12,7 @@ setup(
     license="BSD",
     packages=find_packages(exclude=["tests", ]),
     install_requires=[
-        'django>=1.8,<1.9',
+        'django>=1.8,<2.0',
         'sqlparse'
     ],
     zip_safe=False,
